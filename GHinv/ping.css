@@ -1,0 +1,175 @@
+/* =========================================
+   PING COMMANDER STYLES (Final Giant Edition)
+   ========================================= */
+
+.ping-section-wrapper {
+    margin-top: 10px;
+    padding-top: 5px;
+    animation: fadeIn 0.5s ease;
+}
+
+.ping-controls-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: flex-end;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-label {
+    font-size: 9px;
+    color: #666;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-left: 2px;
+}
+
+.ping-dropdown {
+    width: 100%;
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 30px 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 32px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300ff88%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+.ping-dropdown:hover { border-color: #555; background-color: #161616; }
+.ping-dropdown:focus { border-color: #00ff88; box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
+.ping-dropdown option { background-color: #161616; color: #fff; padding: 10px; }
+
+.ping-start-btn {
+    background: #00ff88;
+    color: #000;
+    border: none;
+    padding: 0 15px;
+    border-radius: 6px;
+    font-weight: 900;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-transform: uppercase;
+    height: 32px;
+    min-width: 60px;
+}
+.ping-start-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3); }
+.ping-start-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.ping-results-box {
+    background: #0a0a0a;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 5px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.ping-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 15px; 
+    border-bottom: 1px solid #1a1a1a;
+}
+.ping-row:last-child { border-bottom: none; }
+
+.country-badge {
+    color: #00ff88;
+    font-weight: 900;
+    font-family: monospace;
+    font-size: 14px;
+    margin-right: 12px;
+    display: inline-block;
+    min-width: 25px;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.2);
+}
+
+.server-name { 
+    display: flex; align-items: center; color: #eee; 
+    font-size: 13px; font-weight: 600; 
+}
+
+.ping-value-box {
+    font-family: 'Consolas', monospace;
+    font-weight: 900 !important;
+    font-size: 13px !important; 
+    min-width: 80px;
+    text-align: right;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.ping-good { color: #00ff88 !important; text-shadow: 0 0 10px rgba(0,255,136,0.3); }
+.ping-med  { color: #ffaa00 !important; }
+.ping-bad  { color: #ff4444 !important; }
+
+.ping-bar-bg {
+    width: 50px; height: 4px; background: #222;
+    border-radius: 3px; margin-right: 15px; overflow: hidden;
+}
+.ping-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease-out; }
+
+.speed-test-section {
+    margin-top: 15px; padding-top: 10px; border-top: 1px dashed #222;
+}
+
+.speed-dual-card {
+    background: #0f0f0f;
+    border: 1px solid #333;
+    border-radius: 8px;
+    display: flex;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+.speed-half {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 10px; transition: 0.3s;
+}
+.speed-half.active { background: rgba(255, 255, 255, 0.03); }
+
+.speed-divider { width: 1px; background: linear-gradient(to bottom, transparent, #333, transparent); }
+
+.speed-icon-label {
+    font-size: 8px; font-weight: 800; color: #666; letter-spacing: 1px; margin-bottom: 5px;
+}
+
+.speed-value-group { display: flex; align-items: baseline; gap: 2px; }
+
+.speed-val {
+    font-family: 'Consolas', monospace; font-size: 22px; font-weight: 900;
+    color: #fff;
+}
+.speed-dim { font-size: 9px; color: #444; font-weight: bold; }
+
+.download-done .speed-val { color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+.upload-done .speed-val { color: #00c3ff; text-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
+
+.speed-btn-mini {
+    background: #222; color: #fff; border: 1px solid #444;
+    padding: 4px 12px; border-radius: 4px; font-size: 9px; font-weight: 800;
+    cursor: pointer; white-space: nowrap; transition: 0.2s;
+}
+.speed-btn-mini:hover { border-color: #00ff88; color: #00ff88; }
+.speed-btn-mini:disabled { opacity: 0.5; cursor: not-allowed; border-color: #333; color: #555; }
+
+.speed-progress-bg { height: 4px; background: #1a1a1a; border-radius: 2px; overflow: hidden; }
+.speed-progress-fill { height: 100%; width: 0%; background: #00ff88; transition: width 0.2s; box-shadow: 0 0 5px #00ff88; }

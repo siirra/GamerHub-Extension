@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GamerHub Inventory (beta)</title>
+    <link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+
+    <div id="friends-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>USER MANAGER</h3>
+            <button id="close-sidebar">×</button>
+        </div>
+        
+        <div class="sidebar-section fixed-section">
+            <h4 class="section-title">EXTERNAL SEARCH</h4>
+            <div class="external-search-box">
+                <input type="text" id="external-user-input" placeholder="Steam ID / Link..." autocomplete="off">
+                <button id="btn-search-external" title="Search">➜</button>
+            </div>
+            <div id="external-search-status"></div>
+        </div>
+
+        <div class="sidebar-section scrollable-section">
+            <h4 class="section-title">FRIENDS LIST</h4>
+            <div class="sidebar-search-box">
+                <input type="text" id="friend-search-input" placeholder="Filter friends..." autocomplete="off">
+            </div>
+            <div class="sidebar-content" id="friends-list-container">
+                <div class="loader-small"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="inv-header">
+        <div class="header-brand">
+            <button id="menu-toggle-btn" class="menu-btn" title="Open Menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            
+            <div class="profile-info-container">
+                <img id="current-user-avatar" src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Avatar">
+                <div class="header-text-group">
+                    <h1 id="inventory-owner-name">MY INVENTORY</h1>
+                    <span class="game-tag">COUNTER-STRIKE 2 (REAL CASH VALUE)</span>
+                </div>
+            </div>
+            </div>
+        
+       <div class="stats-group">
+    <div class="stats-badge">
+        <span class="label">COUNT</span>
+        <b id="total-count">...</b>
+    </div>
+    <div class="value-container">
+        <div class="value-info">
+            <span class="label">TOTAL VALUE</span>
+            <b id="inventory-total" class="value-text">---</b>
+            </div>
+        <button id="btn-refresh-inv" class="icon-btn small" title="Refresh">↻</button>
+        </div>
+</div>
+    </div>
+
+    <div class="toolbar-container">
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="item-search" placeholder="Search skin name..." autocomplete="off">
+        </div>
+
+        <div class="filters-wrapper">
+            <select id="filter-type" class="custom-select">
+                <option value="all">All Types</option>
+                <option value="Knife">★ Knife</option>
+                <option value="Gloves">★ Gloves</option>
+                <option value="Agent">Agent</option>
+                <option value="Rifle">Rifle</option>
+                <option value="Pistol">Pistol</option>
+                <option value="SMG">SMG</option>
+                <option value="Sniper">Sniper</option>
+                <option value="Shotgun">Shotgun</option>
+                <option value="Machinegun">Machinegun</option>
+                <option value="Container">Case/Package</option>
+                <option value="Sticker">Sticker</option>
+                <option value="Music Kit">Music Kit</option>
+                <option value="Graffiti">Graffiti</option>
+                <option value="Patch">Patch</option>
+            </select>
+
+            <select id="filter-rarity" class="custom-select">
+                <option value="all">All Rarities</option>
+                <option value="Contraband">Contraband (Gold)</option>
+                <option value="Covert">Covert (Red)</option>
+                <option value="Classified">Classified (Pink)</option>
+                <option value="Restricted">Restricted (Purple)</option>
+                <option value="Mil-Spec">Mil-Spec (Blue)</option>
+                <option value="Industrial">Industrial (Light Blue)</option>
+                <option value="Consumer">Consumer (Grey)</option>
+            </select>
+
+            <select id="sort-price" class="custom-select">
+                <option value="default">Sort: Default</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="price_asc">Price: Low to High</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="inventory-grid" class="inventory-container">
+        <div class="status-msg">
+            <div class="loader"></div>
+            <p>Connecting to Steam...</p>
+        </div>
+        <div id="no-results-view" style="display: none;">
+            <h3>⚠️ No items found with current filters</h3>
+            <button id="btn-reset-filters" class="action-btn">Reset Filters</button>
+        </div>
+    </div>
+
+    <div id="item-details-modal" class="modal-overlay">
+    <div class="modal-card">
+        <button id="close-modal-btn">×</button>
+        
+        <div class="modal-top">
+            <div class="modal-img-box"><img id="modal-img" src="" alt="Item"></div>
+            <div class="modal-header-info">
+                <h2 id="modal-title">Item Name</h2>
+                <span id="modal-type">Item Type</span>
+            </div>
+        </div>
+
+        <div id="modal-stickers-container" class="stickers-wrapper" style="display: none;"></div>
+
+        <div class="modal-stats-grid">
+            <div class="stat-box"><span class="stat-label">LOWEST</span><span class="stat-value price" id="modal-lowest">---</span></div>
+            <div class="stat-box"><span class="stat-label">MEDIAN</span><span class="stat-value price" id="modal-median">---</span></div>
+            <div class="stat-box"><span class="stat-label">VOL (24h)</span><span class="stat-value" id="modal-volume">---</span></div>
+        </div>
+
+        <div class="chart-container"><canvas id="priceChart"></canvas><div id="chart-tooltip"></div></div>
+        
+    <div class="modal-actions">
+    <div id="inspect-group" class="btn-group" style="display: none;">
+        <a id="modal-inspect-btn" href="#" class="action-btn inspect-main">INSPECT IN GAME</a>
+        <button id="modal-copy-btn" class="action-btn inspect-copy" title="Copy Inspect Link">Copy</button>
+    </div>
+
+    <a id="modal-market-link" href="#" target="_blank" class="action-btn market">VIEW ON MARKET</a>
+</div>
+    </div> 
+</div>
+
+    </div> </div><script src="inventory.js"></script>
+</body>
+</html>

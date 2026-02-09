@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GamerHub Ultimate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="friends.css"> 
+    <link rel="stylesheet" href="ping.css"> 
+</head>
+<body>
+    <div class="main-wrapper">
+        <nav class="side-nav">
+            <div class="tab-btn logo-wrapper" data-target="dashboard" title="Dashboard">
+                <h1 class="logo">G<span>H</span></h1>
+            </div>
+            
+            <div class="nav-links">
+                <button class="tab-btn active" data-target="friends">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M7 21v-2a4 4 0 0 1 3-3.87"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </span>
+                    <span class="label">Friends</span>
+                </button>
+
+                <button class="tab-btn" data-target="ping">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </span>
+                    <span class="label">Network</span>
+                </button>
+
+                <button class="tab-btn" data-target="deals">
+                    <span class="icon">🏷️</span>
+                    <span class="label">Deals</span>
+                </button>
+
+                <button class="tab-btn" data-target="notifications">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <span class="label">Scanner</span>
+                </button>
+
+                <button class="tab-btn" data-target="freebies">
+                    <span class="icon">🎁</span>
+                    <span class="label">Free</span>
+                </button>
+            </div>
+
+         <div class="nav-footer">
+            <button id="btn-donate" class="tab-btn" title="Support Developer">
+                <span class="icon">☕</span>
+            </button>
+        </div>
+
+        <button id="btn-popout" title="Pop-out Window">⇱</button>
+    </nav>
+
+        <main class="content-area">
+            
+            <div id="dashboard" class="tab-content">
+                <div class="neon-section-title">COMMAND CENTER</div>
+                
+                <div id="steam-user-card" class="user-profile-card" style="display:none;">
+                    <img id="dashboard-avatar" src="" class="user-avatar-glow">
+                    <div class="user-info-box">
+                        <div id="dashboard-username" class="user-name-glitch">Loading...</div>
+                        <div class="user-status-row">
+                            <span class="status-dot"></span>
+                            <span id="dashboard-steamid" style="font-size:9px; color:#666; letter-spacing:1px;">ID: ---</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button id="btn-refresh-data" class="action-icon-btn refresh" title="Refresh Data">↻</button>
+                        <button id="btn-logout-steam" class="action-icon-btn logout extended" title="Switch Account">⏻ CHANGE ACCOUNT</button>
+                    </div>
+                </div>
+
+                <div id="steam-login-warning" class="login-warning-card" style="display:none;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:18px;">⚠️</span>
+                        <div>
+                            <div style="font-weight:900; font-size:11px;">SYSTEM OFFLINE</div>
+                            <div style="font-size:9px; opacity:0.8;">Steam Login Required</div>
+                        </div>
+                    </div>
+                    <a href="https://steamcommunity.com/login/home/" target="_blank" class="login-pulse-btn">CONNECT</a>
+                </div>
+                
+                <button id="btn-open-inventory" class="inventory-clean-btn">
+    <span style="font-size: 16px;">📦</span>
+    <span>OPEN INVENTORY</span>
+    <span style="font-size: 10px; color: #666; margin-left: auto;">-></span>
+</button>
+
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        
+                        <span id="stat-games">0</span>
+                        <p>Tracked games</p>
+                    </div>
+                    <div class="stat-card">
+                        
+                        <span id="stat-friends">0</span>
+                        <p>Online friends</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <span style="color: #00ff88; font-size:14px;">READY</span>
+                        <p>System</p>
+                    </div>
+                </div>
+
+                <div class="config-panel">
+                    <div class="config-header">
+                        <span>⚙ SYSTEM CONFIGURATION</span>
+                        <div class="config-line"></div>
+                    </div>
+
+                    <div class="config-row">
+                        <div class="config-label">
+                            <span id="api-title-steam" style="color:#00ff88;">STEAM API</span>
+                            <span id="api-desc-steam" class="config-sub">Checking Status...</span>
+                        </div>
+                        <div class="config-input-wrapper">
+                            <input type="text" id="setting-api-key-steam" class="tech-input" placeholder="KEY NOT SET">
+                            <button id="btn-save-api-steam" class="tech-btn save">SAVE</button>
+                        </div>
+                    </div>
+
+                    <div class="config-row">
+                        <div class="config-label">
+                            <span id="api-title-faceit" style="color:#ff5500;">FACEIT API</span>
+                            <span id="api-desc-faceit" class="config-sub">Checking Status...</span>
+                        </div>
+                        <div class="config-input-wrapper">
+                            <input type="text" id="setting-api-key-faceit" class="tech-input" placeholder="KEY NOT SET">
+                            <button id="btn-save-api-faceit" class="tech-btn faceit">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ping" class="tab-content">
+                <div class="neon-section-title">NETWORK OPS</div>
+                
+                <div class="ping-section-wrapper" style="border-top:none; margin-top:0;">
+                    <div class="ping-controls-container">
+                        <div class="control-group" style="flex: 1.5;">
+                            <label class="input-label">GAME SERVER</label>
+                            <select id="ping-game-select" class="ping-dropdown">
+                                <option value="cs2">Counter-Strike 2</option>
+                                <option value="valorant">Valorant</option>
+                                <option value="apex">Apex Legends</option>
+                                <option value="cod">Call of Duty</option>
+                            </select>
+                        </div>
+                        <div class="control-group" style="flex: 1;">
+                            <label class="input-label">REGION</label>
+                            <select id="ping-region-select" class="ping-dropdown">
+                                <option value="EU">Europe</option>
+                                <option value="NA">USA / NA</option>
+                                <option value="SA">S. America</option>
+                                <option value="AS">Asia / OCE</option>
+                                <option value="ME">Middle East</option>
+                                <option value="ALL">Global</option>
+                            </select>
+                        </div>
+                        <div class="control-group" style="width: auto;">
+                            <label class="input-label" style="opacity: 0;">ACT</label> 
+                            <button id="btn-start-ping" class="ping-start-btn">SCAN</button>
+                        </div>
+                    </div>
+
+                    <div id="ping-results-container" class="ping-results-box">
+                        <div style="text-align:center; color:#444; font-size:10px; padding:20px; display:flex; flex-direction:column; align-items:center; gap:5px;">
+                            <span style="font-size:18px; opacity:0.5;">📡</span>
+                            Initialize Latency Scan...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="speed-test-section">
+                    <div class="neon-section-title" style="font-size:9px; margin-bottom:8px; margin-top:15px;">
+                        <span style="font-size:12px;">🚀</span> BANDWIDTH TEST
+                    </div>
+
+                    <div class="speed-dual-card">
+                        <div class="speed-half download-side">
+                            <div class="speed-icon-label">⬇ DOWNLOAD</div>
+                            <div class="speed-value-group">
+                                <span class="speed-val" id="dl-val">0.0</span>
+                                <span class="speed-dim">Mb/s</span>
+                            </div>
+                        </div>
+                        <div class="speed-divider"></div>
+                        <div class="speed-half upload-side">
+                            <div class="speed-icon-label">⬆ UPLOAD</div>
+                            <div class="speed-value-group">
+                                <span class="speed-val" id="ul-val">0.0</span>
+                                <span class="speed-dim">Mb/s</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:10px; align-items:center; margin-top:10px;">
+                        <div class="speed-progress-bg" style="flex:1;">
+                            <div class="speed-progress-fill" id="speed-progress-bar"></div>
+                        </div>
+                        <button id="btn-speed-test" class="speed-btn-mini">START TEST</button>
+                    </div>
+                    <div id="speed-status-text" style="font-size:9px; color:#666; text-align:center; margin-top:5px; height:12px; font-family:monospace;">READY_TO_TEST</div>
+                </div>
+            </div>
+
+            <div id="friends" class="tab-content active">
+                <div class="neon-section-title">SOCIAL NETWORK</div>
+                
+                <div class="platform-tabs">
+                    <button class="plat-btn active" data-platform="steam">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" class="plat-icon" alt="Steam">
+                        STEAM
+                    </button>
+                    <button class="plat-btn" data-platform="faceit">
+                        <img src="https://cdn.simpleicons.org/faceit/FF5500" class="plat-icon" alt="Faceit">
+                        FACEIT
+                    </button>
+                </div>
+
+                <div class="friends-header" style="display:flex; justify-content:space-between; align-items:center; padding:10px;">
+                    <span style="font-size:11px; color:#00ff88; font-weight:bold; letter-spacing:1px;">ACTIVE LIST</span>
+                    <button id="refresh-friends" style="background:none; border:none; color:#00ff88; cursor:pointer; font-size:18px;">↻</button>
+                </div>
+                
+                <div id="stats-container" style="display:flex; gap:15px; padding:0 12px 10px; font-size:10px; color:#666; align-items:center;">
+                    <div>ONLINE <b id="online-count" style="color:#eee">0</b></div>
+                    <div>INGAME <b id="playing-count" style="color:#00ff88">0</b></div>
+                    <div id="removed-stat-trigger">REMOVED <b id="removed-count">0</b></div>
+                </div>
+                
+                <div class="steam-search-box">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="friend-search" class="steam-input-field" placeholder="Search friends...">
+                </div>
+                
+                <div id="friends-list-data" class="friends-list"></div>
+            </div>
+            
+            <div id="deals" class="tab-content">
+                <div class="neon-section-title">MARKET DEALS</div>
+                <div class="search-container" style="position: relative;"> 
+                    <input type="text" id="game-search" placeholder="Search game..." autocomplete="off">
+                    <button id="search-btn">🔍</button>
+                    <div id="search-suggestions" class="suggestions-box"></div>
+                </div>
+                <div id="deals-list"></div>
+            </div>
+
+            <div id="notifications" class="tab-content">
+                <div class="neon-section-title">PRICE TRACKER</div>
+                <div id="add-trigger-card" class="big-add-card">
+                    <span>+</span>
+                    <p>ADD NEW TRACKER</p>
+                </div>
+                <div id="search-wrapper" style="display: none;">
+                    <div class="wishlist-search-box">
+                        <input type="text" id="wishlist-search" placeholder="Game Name...">
+                        <button id="close-search" title="Close">×</button>
+                    </div>
+                    <div id="wishlist-results" class="mini-results"></div>
+                </div>
+                <div class="neon-section-title" style="margin-top:20px; font-size:8px;">WATCHLIST</div>
+                <div id="tracked-games-list">
+                    <p class="status-msg">List Empty.</p>
+                </div>
+            </div>
+            
+            <div id="freebies" class="tab-content">
+                
+                <div class="neon-section-title" style="margin-bottom: 8px;">
+                    <span>LIMITED FREEBIES</span>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin-bottom: 15px; padding-right: 5px;">
+                    
+                    <span style="font-size: 9px; color: #00ff88; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);">
+                        ENABLE NOTIFICATIONS
+                    </span>
+                    
+                    <label class="toggle-switch" title="Enable/Disable Notifications">
+                        <input type="checkbox" id="freebies-notify-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    
+                </div>
+
+                <div id="free-games-list" class="free-grid">
+                    <p class="status-msg">Scanning...</p>
+                </div>
+            </div>
+
+    <div id="donation-modal" class="modal-overlay" style="display: none;">
+        <div class="donation-card">
+            <button id="close-donation" class="close-modal-btn">×</button>
+            <div class="donation-header">
+                <div class="coffee-icon-large">☕</div>
+                <h2>FUEL THE DEV!</h2>
+            </div>
+            <div class="donation-body">
+                <p class="main-msg">Support GamerHub</p>
+                <p class="persuasive-text">Your support keeps the servers running and the updates coming!</p>
+            </div>
+            <button id="confirm-donate-btn" class="mega-donate-btn"><span>DONATE ❤️</span></button>
+        </div>
+    </div>
+
+    <button id="btn-popout" title="Pop-out Window">⇱</button>
+
+    <script src="popup.js"></script>
+    <script src="friends.js"></script>
+    <script src="alerts.js"></script>
+    <script src="ping.js"></script>
+</body>
+</html>
