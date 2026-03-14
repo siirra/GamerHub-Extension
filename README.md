@@ -9,9 +9,4 @@ GamerHub is an open-source Chrome Extension designed for Steam power users and C
 - **Deal Scanner**: Track game deals and price drops via CheapShark.
 
 ## 🛠️ Setup
-1. **Extension**: Load the `/GamerHub-Extension` folder as an unpacked extension in Chrome.
-2. **Server**: Go to `/GamerHub-Server`, run `npm install`, and start with `node server.js`.
-3. **API Keys**: Get your Steam API Key and enter it in the extension settings dashboard.
-
-## ⚠️ Disclaimer
-This project is for educational purposes. We are not affiliated with Valve or Steam.
+ **Extension**: Load the `/GamerHub-Extension` folder as an unpacked extension in Chrome.
